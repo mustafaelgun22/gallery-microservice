@@ -1,5 +1,6 @@
 package com.gallery.gallerymicroservice.Service;
 
+import com.gallery.gallerymicroservice.DTO.AddProductToGalleryRequest;
 import com.gallery.gallerymicroservice.DTO.GalleryDto;
 import com.gallery.gallerymicroservice.Exception.GalleryNotFoundException;
 import com.gallery.gallerymicroservice.Model.Gallery;
@@ -7,6 +8,7 @@ import com.gallery.gallerymicroservice.Repository.GalleryRepository;
 import com.gallery.gallerymicroservice.client.ProductServiceClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.stream.Collectors;
 
@@ -26,7 +28,7 @@ public class GalleryService {
                 .findById(id).
                 orElseThrow(()-> new GalleryNotFoundException("Gallery does not exists"));
         return new GalleryDto(
-                gallery.getName(),gallery.getIds().stream()
+                gallery.getName(),gallery.getProductids().stream()
                 .map(productServiceClient::getProductById)
                 .map(ResponseEntity::getBody)
                 .collect(Collectors.toList()));
@@ -35,5 +37,16 @@ public class GalleryService {
     public GalleryDto createGallery(Gallery gallery){
         Gallery createdGallery = galleryRepository.save(gallery);
         return new GalleryDto(createdGallery.getName());
+    }
+
+    public ResponseEntity<?> addProductToGallery(@RequestBody AddProductToGalleryRequest request){
+        Long productId = Long.valueOf(productServiceClient
+                .getProductByBarcode(request.getBarcode())
+                .getBody().getId());
+        Gallery gallery = galleryRepository.findById(request.getId())
+                .orElseThrow(()-> new GalleryNotFoundException("Gallery does not exists"));
+        gallery.getProductids().add(productId);
+        galleryRepository.save(gallery);
+        return null;
     }
 }

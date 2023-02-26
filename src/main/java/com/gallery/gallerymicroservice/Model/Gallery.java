@@ -15,7 +15,7 @@ public class Gallery {
     @Column(name="name")
     private String name;
     @ElementCollection
-    private List<Long> ids;
+    private List<Long> productids;
 
     public void setId(Long id) {
         this.id = id;
@@ -25,8 +25,8 @@ public class Gallery {
         this.name = name;
     }
 
-    public void setIds(List<Long> ids) {
-        this.ids = ids;
+    public void setProductids(List<Long> productids) {
+        this.productids = productids;
     }
 
     public Long getId() {
@@ -37,7 +37,7 @@ public class Gallery {
         return name;
     }
 
-    public List<Long> getIds() {
-        return ids;
+    public List<Long> getProductids() {
+        return productids;
     }
 }
