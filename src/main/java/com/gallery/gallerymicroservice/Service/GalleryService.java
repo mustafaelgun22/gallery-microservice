@@ -39,7 +39,7 @@ public class GalleryService {
         return new GalleryDto(createdGallery.getName());
     }
 
-    public ResponseEntity<?> addProductToGallery(@RequestBody AddProductToGalleryRequest request){
+    public GalleryDto addProductToGallery(AddProductToGalleryRequest request){
         Long productId = Long.valueOf(productServiceClient
                 .getProductByBarcode(request.getBarcode())
                 .getBody().getId());
@@ -47,6 +47,6 @@ public class GalleryService {
                 .orElseThrow(()-> new GalleryNotFoundException("Gallery does not exists"));
         gallery.getProductids().add(productId);
         galleryRepository.save(gallery);
-        return null;
+        return this.getAllProductsInGalleryById(gallery.getId());
     }
 }

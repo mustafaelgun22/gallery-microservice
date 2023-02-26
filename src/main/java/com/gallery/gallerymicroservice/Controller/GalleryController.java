@@ -23,10 +23,9 @@ public class GalleryController {
         return ResponseEntity.ok(galleryService.createGallery(gallery));
     }
 
-    @PostMapping("/add_product/")
-    public ResponseEntity<Void> addProductToGallery(@RequestBody AddProductToGalleryRequest request){
-        galleryService.addProductToGallery(request);
-        return ResponseEntity.ok().build();
+    @PostMapping("/add/")
+    public ResponseEntity<GalleryDto> addProductToGallery(@RequestBody AddProductToGalleryRequest request){
+        return ResponseEntity.ok(galleryService.addProductToGallery(request));
     }
 
     @GetMapping("/{id}/")
