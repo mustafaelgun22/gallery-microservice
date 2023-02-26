@@ -4,26 +4,29 @@ import java.util.List;
 
 public class GalleryDto {
     private String name;
-    private List<Long> ids;
-
-    public GalleryDto(String name, List<Long> ids) {
-        this.name = name;
-        this.ids = ids;
-    }
+    private List<ProductDto> productDtos;
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setIds(List<Long> ids) {
-        this.ids = ids;
+    public void setProductDtos(List<ProductDto> productDtos) {
+        this.productDtos = productDtos;
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Long> getIds() {
-        return ids;
+    public List<ProductDto> getProductDtos() {
+        return productDtos;
+    }
+
+    public GalleryDto(String name, List<ProductDto> productDtos) {
+        this.name = name;
+        this.productDtos = productDtos;
+    }
+    public GalleryDto(String name) {
+        this.name = name;
     }
 }
