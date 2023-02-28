@@ -3,7 +3,6 @@ package com.gallery.gallerymicroservice.Controller;
 import com.gallery.gallerymicroservice.DTO.AddProductToGalleryRequest;
 import com.gallery.gallerymicroservice.DTO.GalleryDto;
 import com.gallery.gallerymicroservice.Model.Gallery;
-import com.gallery.gallerymicroservice.Repository.GalleryRepository;
 import com.gallery.gallerymicroservice.Service.GalleryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

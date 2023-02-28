@@ -8,7 +8,6 @@ import com.gallery.gallerymicroservice.Repository.GalleryRepository;
 import com.gallery.gallerymicroservice.client.ProductServiceClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.stream.Collectors;
 

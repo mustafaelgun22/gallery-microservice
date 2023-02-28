@@ -3,7 +3,6 @@ package com.gallery.gallerymicroservice.client;
 import com.gallery.gallerymicroservice.Exception.ExceptionMessage;
 import com.gallery.gallerymicroservice.Exception.NotFoundException;
 import feign.Response;
-import feign.codec.Decoder;
 import feign.codec.ErrorDecoder;
 import org.apache.commons.io.IOUtils;
 
