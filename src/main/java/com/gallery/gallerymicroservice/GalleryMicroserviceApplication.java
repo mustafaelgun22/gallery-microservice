@@ -25,6 +25,8 @@ public class GalleryMicroserviceApplication {
 
 	}
 
+	//Bizim oluşturduğumuz error decoder ı kullanması için
+	// bu bean i oluşturmamız gerekmektedir.
 	@Bean
 	public ErrorDecoder errorDecoder(){
 		return new MessageErrorDecoder();
