@@ -13,4 +13,9 @@ public class GeneralExceptionHandler {
     public ResponseEntity<?> handle(GalleryNotFoundException exception){
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ExceptionMessage> handle(NotFoundException exception){
+        return new ResponseEntity<>(exception.getExceptionMessage(), HttpStatus.NOT_FOUND);
+    }
 }
