@@ -9,6 +9,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 @SpringBootApplication
 @EnableFeignClients
@@ -30,6 +35,21 @@ public class GalleryMicroserviceApplication {
 	@Bean
 	public ErrorDecoder errorDecoder(){
 		return new MessageErrorDecoder();
+	}
+
+	@Configuration
+	public class MvcConfigurer implements WebMvcConfigurer {
+
+		List<HandlerInterceptor> interceptors;
+
+		public MvcConfigurer(List<HandlerInterceptor> interceptors) {
+			this.interceptors = interceptors;
+		}
+
+		@Override
+		public void addInterceptors(InterceptorRegistry registry) {
+			interceptors.forEach(x -> registry.addInterceptor(x).addPathPatterns("/v1/gallery/**"));
+		}
 	}
 
 }
