@@ -20,7 +20,7 @@ public class WebInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        return true;
+        return HandlerInterceptor.super.preHandle(request, response, handler);
     }
 
     @Override
